@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-)r-4+&2nmu4k9n*5x1ek&0-#atza)taav=u79m5^apdoype-1f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -58,6 +58,14 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
 
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.office365.com'  # Outlook SMTP server
+EMAIL_PORT = 587  # Port for TLS
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'jegathish.e@staan.in'  # Your Outlook email address
+EMAIL_HOST_PASSWORD = 'Wax83711'
+
 
 APPEND_SLASH = False
 ROOT_URLCONF = 'staanEnquirFrom.urls'
