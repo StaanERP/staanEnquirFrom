@@ -7,7 +7,6 @@
     <list default="true" id="6d9414ed-6085-4437-9726-4be7949804c2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/staanEnquirFrom/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/staanEnquirFrom/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/staanEnquirFrom/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/staanEnquirFrom/wsgi.py" afterDir="false" />
     </list>
@@ -29,7 +28,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "Z:/enquiryFrom/staanEnquirFrom"
+    "last_opened_file_path": "Z:/enquiryFrom/staanEnquirFrom",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   },
   "keyToStringList": {
     "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
