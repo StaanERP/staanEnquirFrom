@@ -30,7 +30,7 @@ from Enquiryapi import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('ssltest/', include('Enquiryapi.urls')),
+    path('ssltest/', include('Enquiryapi.urls')),
     path('', views.EnquiryApi.as_view()),
     path('api/<int:pk>/', views.EnquiryDetails.as_view()),
     path('api/product/', views.productApi.as_view()),
