@@ -23,13 +23,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)r-4+&2nmu4k9n*5x1ek&0-#atza)taav=u79m5^apdoype-1f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', "*"]
 # ALLOWED_HOSTS = [".vercel.app", "*"]
 
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
-# Application definition
+# Paths to SSL/TLS certificate and private key files
+SSL_CERTIFICATE_PATH = "/path/to/cert.crt"
+SSL_PRIVATE_KEY_PATH = "/path/to/cert.key"
+
+# Use custom SSL/TLS certificate and private key
+SECURE_SSL_CERT = SSL_CERTIFICATE_PATH
+SECURE_SSL_KEY = SSL_PRIVATE_KEY_PATH
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -41,6 +50,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     "Enquiryapi",
+    "sslserver"
 ]
 
 MIDDLEWARE = [

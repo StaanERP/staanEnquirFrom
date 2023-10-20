@@ -22,14 +22,15 @@ from rest_framework.routers import DefaultRouter
 # router = DefaultRouter()
 # router.register(r'enquiry', views.EnquiryApi, basename='enquiry')
 
-urlpatterns = [
-    # path('api_', include(router.urls))
-    path('api/',  views.EnquiryApi.as_view()),
-    path('api/<int:pk>',  views.EnquiryDetails.as_view()),
-    path('api/product',  views.productApi.as_view()),
-    path('api/product/<int:pk>', views.productDetails.as_view()),
-    path('api/Conference',  views.conferenceApi.as_view()),
-    path('api/conferenceDetails/<int:pk>',  views.conferenceDetails.as_view()),
-
-]
+# urlpatterns = [
+#     # path('api_', include(router.urls))
 #
+#     path(r'^$',  views.EnquiryApi.as_view()),
+#     path('api/<int:pk>',  views.EnquiryDetails.as_view()),
+#     path('api/product',  views.productApi.as_view()),
+#     path('api/product/<int:pk>', views.productDetails.as_view()),
+#     path('api/Conference',  views.conferenceApi.as_view()),
+#     path('api/conferenceDetails/<int:pk>',  views.conferenceDetails.as_view()),
+#
+# ]
+# #
