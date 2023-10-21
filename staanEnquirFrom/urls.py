@@ -15,9 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.template.defaulttags import url
 from django.urls import path, include
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    url(r'^.well-known/pki-validation/random-file.txt$', TemplateView.as_view(template_name='random-file.txt')),
     path('', include("Enquiryapi.urls")),
 ]

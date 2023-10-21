@@ -26,19 +26,27 @@ SECRET_KEY = 'django-insecure-)r-4+&2nmu4k9n*5x1ek&0-#atza)taav=u79m5^apdoype-1f
 DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', "*"]
-# ALLOWED_HOSTS = [".vercel.app", "*"]
 
-# SECURE_SSL_REDIRECT = True
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
-#
-# # Paths to SSL/TLS certificate and private key files
-# SSL_CERTIFICATE_PATH = "/path/to/cert.crt"
-# SSL_PRIVATE_KEY_PATH = "/path/to/cert.key"
-#
-# # Use custom SSL/TLS certificate and private key
-# SECURE_SSL_CERT = SSL_CERTIFICATE_PATH
-# SECURE_SSL_KEY = SSL_PRIVATE_KEY_PATH
+
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
+
+SECURE_CONTENT_TYPE_NOSNIFF = True
+
+# Paths to your SSL certificate and private key files
+SSL_CERTIFICATE_PATH = '/path/to/cert_1.pem'
+SSL_PRIVATE_KEY_PATH = '/path/to/key_1.pem'
+
+# SSL settings
+SECURE_SSL_REDIRECT = True
+SECURE_HSTS_SECONDS = 31536000  # 1 year
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+ALLOWED_HOSTS = ['your_domain_or_IP']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
