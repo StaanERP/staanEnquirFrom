@@ -14,27 +14,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
-# from django.urls import path, include
-#
-# urlpatterns = [
-#     path('admin/', admin.site.urls),
-#     # path('', ),
-#     url(r'^ssltest/', include('Enquiryapi.urls'))
-#
-# ]
 from django.contrib import admin
-from django.template.defaulttags import url
 from django.urls import path, include
-from Enquiryapi import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('ssltest/', include('Enquiryapi.urls')),
-    path('', views.EnquiryApi.as_view()),
-    path('api/<int:pk>/', views.EnquiryDetails.as_view()),
-    path('api/product/', views.productApi.as_view()),
-    path('api/product/<int:pk>/', views.productDetails.as_view()),
-    path('api/Conference/', views.conferenceApi.as_view()),
-    path('api/conferenceDetails/<int:pk>/', views.conferenceDetails.as_view()),
+    path('', include("Enquiryapi.urls")),
 ]

@@ -28,17 +28,17 @@ DEBUG = False
 ALLOWED_HOSTS = ['127.0.0.1', "*"]
 # ALLOWED_HOSTS = [".vercel.app", "*"]
 
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-
-# Paths to SSL/TLS certificate and private key files
-SSL_CERTIFICATE_PATH = "/path/to/cert.crt"
-SSL_PRIVATE_KEY_PATH = "/path/to/cert.key"
-
-# Use custom SSL/TLS certificate and private key
-SECURE_SSL_CERT = SSL_CERTIFICATE_PATH
-SECURE_SSL_KEY = SSL_PRIVATE_KEY_PATH
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+#
+# # Paths to SSL/TLS certificate and private key files
+# SSL_CERTIFICATE_PATH = "/path/to/cert.crt"
+# SSL_PRIVATE_KEY_PATH = "/path/to/cert.key"
+#
+# # Use custom SSL/TLS certificate and private key
+# SECURE_SSL_CERT = SSL_CERTIFICATE_PATH
+# SECURE_SSL_KEY = SSL_PRIVATE_KEY_PATH
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     "Enquiryapi",
-    "sslserver"
+    # "sslserver"
 ]
 
 MIDDLEWARE = [

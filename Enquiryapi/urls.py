@@ -24,8 +24,7 @@ from rest_framework.routers import DefaultRouter
 
 urlpatterns = [
     # path('api_', include(router.urls))
-
-    path(r'^$',  views.EnquiryApi.as_view()),
+    path('api/',  views.EnquiryApi.as_view()),
     path('api/<int:pk>',  views.EnquiryDetails.as_view()),
     path('api/product',  views.productApi.as_view()),
     path('api/product/<int:pk>', views.productDetails.as_view()),
@@ -33,4 +32,4 @@ urlpatterns = [
     path('api/conferenceDetails/<int:pk>',  views.conferenceDetails.as_view()),
 
 ]
-# #
+#
