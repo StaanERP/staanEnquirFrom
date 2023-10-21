@@ -9,11 +9,14 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+# BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+SSL_CERTIFICATE_PATH = os.path.join(BASE_DIR, 'cert.pem')
+SSL_KEY_PATH = os.path.join(BASE_DIR, 'key.pem')
 
 
 # Quick-start development settings - unsuitable for production
@@ -23,30 +26,28 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-)r-4+&2nmu4k9n*5x1ek&0-#atza)taav=u79m5^apdoype-1f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', "*"]
+ALLOWED_HOSTS = ["*"]
 
 
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-SECURE_BROWSER_XSS_FILTER = True
-X_FRAME_OPTIONS = 'DENY'
+# SSL settings for development
+if os.getenv('DJANGO_USE_SSL', 'False').lower() == 'true':
+    SECURE_SSL_REDIRECT = False
+    CSRF_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    X_FRAME_OPTIONS = 'DENY'
+    SECURE_HSTS_SECONDS = 31536000  # One year
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
 
-SECURE_CONTENT_TYPE_NOSNIFF = True
 
-# Paths to your SSL certificate and private key files
-SSL_CERTIFICATE_PATH = '/path/to/cert_1.pem'
-SSL_PRIVATE_KEY_PATH = '/path/to/key_1.pem'
+    # Set the SSL certificate and key paths
+    os.environ['SSL_CERT_FILE'] = SSL_CERTIFICATE_PATH
+    os.environ['SSL_KEY_FILE'] = SSL_KEY_PATH
 
-# SSL settings
-SECURE_SSL_REDIRECT = True
-SECURE_HSTS_SECONDS = 31536000  # 1 year
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
-
-ALLOWED_HOSTS = ['your_domain_or_IP']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
