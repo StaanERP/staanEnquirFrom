@@ -10,14 +10,50 @@ from .serializers import *
 from rest_framework import viewsets, status
 from django.core.mail import EmailMessage
 from pathlib import Path
+from rest_framework.permissions import AllowAny
+from rest_framework_simplejwt.tokens import RefreshToken
 
 
 # Create your views here.
+
+class CustomUserCreate(APIView):
+    permission_classes = [AllowAny]
+
+    # def get(self, request):
+    #     user  = NewUser.objects.all()
+    #
+    #     serializer_datas = RegisterUserSerializer(user, many=True)
+    #
+    #     return Response(serializer_datas.data)
+    def post(self, request):
+
+        serializer = RegisterUserSerializer(data=request.data)
+
+        if serializer.is_valid():
+            newuser = serializer.save()
+            if newuser:
+                return Response(status=status.HTTP_201_CREATED)
+        print(serializer.errors)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class BlacklistTokenView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        try:
+            refresh_token = request.data['refresh_token']
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response({"message": "Logged out successfully"}, status=200)
+        except Exception as e:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
 def send_email(request, to, pdf_file_paths):
     subject = 'Testing Email'
     body = """Dear Sir/Madam,
+    
 It’s very nice meeting you at conference.
 
 We, STAAN Biomed Engineering Private Limited was established in the year of 2003, as a leading manufacturer of Surgical Operating Tables, Surgical Operating Lights, Anesthesia Workstation, ICU Ventilators, HFNC (High Flow Nasal Cannula), Tourniquet, Surgical Instruments, Critical Care Devices. Our Organisation is an ISO 9001:2015 (Quality Management Systems & Requirements) & EN ISO 13485:2016 (Medical Devices – Quality Management Systems – Requirements) Certified Company.
@@ -75,18 +111,21 @@ class EnquiryApi(APIView):
 
         if serializer.is_valid():
             serializer.save()
+            print(serializer)
             email_value = serializer.validated_data.get('Email')
             intrested = serializer.validated_data.get('Interesteds')
             BASE_DIR = Path(__file__).resolve().parent.parent
             pdf_path = BASE_DIR / "PDF"
             intrested_list = []
-            for data in intrested:
+            for data in (intrested):
                 # print(pdf_path / str(data))
-                data = str(data)+".pdf"
+                data = str(data) + ".pdf"
+                print(data)
                 intrested_list.append(pdf_path / str(data))
 
             send_email(request, email_value, intrested_list)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        # print(serializer.errors)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -106,8 +145,8 @@ class EnquiryDetails(APIView):
         print(request)
         article = self.get_object(pk)
         serializer = EnquirySerializers(article, data=request.data)
-        print(serializer.is_valid())
-        print(serializer)
+        # print(serializer.is_valid())
+        # print(serializer)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
@@ -173,7 +212,6 @@ class conferenceDetails(APIView):
         serialzer = ConferenceSerializers(article)
         return Response(serialzer.data)
 
-    #
     def put(self, request, pk):
         print(request)
         article = self.get_object(pk)
@@ -185,7 +223,6 @@ class conferenceDetails(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    #
     def delete(self, request, pk):
         article = self.get_object(pk)
         article.delete()

@@ -6,4 +6,5 @@ from .models import *
 admin.site.register(enquiryDatas)
 admin.site.register(product)
 admin.site.register(Conferencedata)
+admin.site.register(NewUser)
 

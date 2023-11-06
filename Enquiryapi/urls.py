@@ -17,6 +17,9 @@ Including another URLconf
 
 from django.urls import path, include
 from . import views
+from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
+
+
 from rest_framework.routers import DefaultRouter
 
 # router = DefaultRouter()
@@ -24,7 +27,11 @@ from rest_framework.routers import DefaultRouter
 
 urlpatterns = [
     # path('api_', include(router.urls))
+path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/',  views.EnquiryApi.as_view()),
+    path('api/register',  views.CustomUserCreate.as_view(), name='create_user'),
+    path("api/logout/blacklist/", views.BlacklistTokenView.as_view()),
     path('api/<int:pk>',  views.EnquiryDetails.as_view()),
     path('api/product',  views.productApi.as_view()),
     path('api/product/<int:pk>', views.productDetails.as_view()),
